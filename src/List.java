@@ -45,7 +45,7 @@ public class List {
 
     public void addFirst(int item) {
         ListNode temp = new ListNode(item);
-        first.next = first;
+        temp.next = first;
         first = temp;
         size++;
     }
@@ -69,14 +69,14 @@ public class List {
     }
 
     public void add(int index, int item) {
-        checkIndex(index, size);
+        checkIndex(index, size + 1); // Check if index is within valid range
         ListNode temp = new ListNode(item);
         if (index == 0) {
-            first.next = first;
+            temp.next = first;
             first = temp;
         } else {
             ListNode p = first;
-            for (int i = 0; i < index; i++) {
+            for (int i = 0; i < index - 1; i++) {
                 p = p.next;
             }
             temp.next = p.next;
@@ -135,7 +135,6 @@ public class List {
         size--;
         return item;
     }
-
 
     public int remove(int index) {
         checkIndex(index, size);
@@ -275,7 +274,7 @@ public class List {
         return -1;
     }
 
-    public int removeALl(int item) {
+    public int removeAll(int item) {
         if (first == null) {
             throw new EmptyListException("list is empty");
         }
